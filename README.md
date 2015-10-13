@@ -1,6 +1,6 @@
-# Giphy Mixmax app
+# Giphy Link Preview for Mixmax
 
-This is an open source Mixmax Link Resolver. See "Build a Link Resolver" under <http://sdk.mixmax.com> for more information about how to use this example code in Mixmax.
+This is an open source Mixmax Link Resolver. See <http://sdk.mixmax.com/docs/tutorial-giphy-link-preview> for more information about how to use this example code in Mixmax.
 
 ## Running locally
 
