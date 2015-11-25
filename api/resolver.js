@@ -36,7 +36,7 @@ module.exports = function(req, res) {
 
   var image = response.body.data.images.original;
   var width = image.width > 600 ? 600 : image.width;
-  var html = '<p><img style="max-width:100%;" src="' + image.url + '" width="' + width + '"/></p>';
+  var html = '<img style="max-width:100%;" src="' + image.url + '" width="' + width + '"/>';
   res.json({
     body: html
   });
