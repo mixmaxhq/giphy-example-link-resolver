@@ -39,5 +39,6 @@ module.exports = function(req, res) {
   var html = '<img style="max-width:100%;" src="' + image.url + '" width="' + width + '"/>';
   res.json({
     body: html
+    // Add raw:true if you're returning content that you want the user to be able to edit
   });
 };
