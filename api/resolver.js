@@ -1,5 +1,4 @@
 var key = require('../utils/key');
-var sync = require('synchronize');
 var request = require('request');
 var _ = require('underscore');
 
@@ -18,27 +17,26 @@ module.exports = function(req, res) {
 
   var id = matches[1];
 
-  var response;
-  try {
-    response = sync.await(request({
-      url: 'http://api.giphy.com/v1/gifs/' + encodeURIComponent(id),
-      qs: {
-        api_key: key
-      },
-      gzip: true,
-      json: true,
-      timeout: 15 * 1000
-    }, sync.defer()));
-  } catch (e) {
-    res.status(500).send('Error');
-    return;
-  }
+  var response = request({
+    url: 'http://api.giphy.com/v1/gifs/' + encodeURIComponent(id),
+    qs: {
+      api_key: key
+    },
+    gzip: true,
+    json: true,
+    timeout: 15 * 1000
+  }, function(err, result) {
+    if (err) {
+      res.status(500).send('Error');
+      return;
+    }
 
-  var image = response.body.data.images.original;
-  var width = image.width > 600 ? 600 : image.width;
-  var html = '<img style="max-width:100%;" src="' + image.url + '" width="' + width + '"/>';
-  res.json({
-    body: html
-    // Add raw:true if you're returning content that you want the user to be able to edit
+    var image = response.body.data.images.original;
+    var width = image.width > 600 ? 600 : image.width;
+    var html = '<img style="max-width:100%;" src="' + image.url + '" width="' + width + '"/>';
+    res.json({
+      body: html
+        // Add raw:true if you're returning content that you want the user to be able to edit
+    });
   });
 };
