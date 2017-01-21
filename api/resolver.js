@@ -25,7 +25,7 @@ module.exports = function(req, res) {
     gzip: true,
     json: true,
     timeout: 15 * 1000
-  }, function(err, result) {
+  }, function(err, response) {
     if (err) {
       res.status(500).send('Error');
       return;
